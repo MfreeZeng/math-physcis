@@ -1,0 +1,148 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[UTF8]{ctex}
+\usepackage{graphicx}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsfonts}
+\usepackage{physics}
+\usepackage{pifont}
+\usepackage{wrapfig}
+\usepackage[final=true,hidelinks]{hyperref}
+\begin{document}
+    \title{数学分析\thanks{This note was made by \LaTeX \quad Final edition \today}}
+    \date{2022/7/10}
+    \author{曾德柳}
+    \maketitle
+\tableofcontents{}
+\chapter{序列}
+\paragraph{斯托尔茨(O.Stolz)定理}
+    为确定$\frac{\infty}{\infty}$型的不定式$\frac{x_n}{y_n}$的极限\\
+    设整序变量$y_n\rightarrow +\infty$，并且至少是从某一项开始，在$n$增大时$y_n$也增大:
+    $$y_{n+1} >y_n$$
+    则
+    $$\lim\frac{x_n}{y_n} =\lim\frac{x_n-x_{n-1}}{y_n-y_{n-1}}$$
+\paragraph{定理}
+    已给单调增大的整序变量$x_n$.若有上确界:
+    $$x_n \leq M$$ 则必有一有限的极限，否则趋向$+\infty$同样的，单调减小也有类似性质
+\paragraph{数$e$}
+    这里使用极限步骤来定义一个新的数:$e$\\
+    \quad 考察整序变量$$x_n=\left(1+\frac{1}{n}\right)^{n}$$
+    使用二项式定理展开可证明$x_n$时单调递增数列
+    \begin{align*}
+        x_n=&1+1+\frac{1}{2!}\left(1-\frac{1}{n}\right)+\frac{1}{3!}\left(1-\frac{1}{n}\right)\left(1-\frac{2}{n}\right)+\dots \\
+            &+\frac{1}{k!}\left(1-\frac{1}{n}\right)\dots \left((1-\frac{k-1}{n}\right)+\dots \\
+            &+\frac{1}{n!}\left(1-\frac{1}{n}\right)\dots \left(1-\frac{n-1}{n}\right)
+    \end{align*}
+    证明上有界.在上式中略去括号的项
+    $$x_n<2+\frac{1}{2!}+\frac{1}{3!}+\dots \frac{1}{n!}$$
+    更进一步，将分母每一因子全改为2:
+    $$x_n<2+\frac{1}{2}+\frac{1}{2^2}+\dots +\frac{1}{2^{n-1}}<3$$
+    所以$x_n$有极限，记为:
+    $$e=\lim \left(1+\frac{1}{n}\right)^n$$
+    $$e=2.718281828459045\dots$$
+\paragraph{区间套引理}
+    给定单调增大的整序变量$x_n$及单调减小的整序变量$y_n$，且恒有$$x_n<y_n$$
+    若其差$(y_n-x_n) \rightarrow 0$, 则二整序变量必有公共的有限极限:
+    $$c=\lim x_n=\lim y_n$$
+\section{收敛原理·部分极限}
+\paragraph{收敛原理} 
+设给定整序变量$x_n$,依数列
+\begin{equation}
+    x_1,x_2,\dots,x_n,\dots
+    \label{有界序列}
+\end{equation}
+而递变，我们要研究序列极限的存在性的一般判定法，所以我们不能用极限定义的本身，因为极限定义中已经用到了这个极限，我们需要仅用这数列来判定极限存在性问题\par
+    \paragraph*{定理} 整序变量$x_n$有有限极限的充分必要条件为：对于每一个数$\varepsilon$, \\
+    总存在着序号$N$，使$n>N$及$n'>N$时，便能成立不等式
+    $$\left\lvert x_n-x'_n\right\rvert <\varepsilon$$
+    \paragraph{证明} 证明之前我们们
+\paragraph{部分数列与部分极限}
+今我们从\eqref{有界序列}中选出一部分
+\begin{equation}
+    x_{n_1},x_{n_2},\dots,x_{n_k},\dots
+    \label{部分序列}
+\end{equation}
+其中$\{n_k\}$为某一自然数的递增序列\par
+若数列\eqref{有界序列}有确定极限，则部分数列\eqref{部分序列}也必有相同的极限\par
+事实上，不论整序变量$n_k$依什么规律趋向$+\infty$，我们的命题仍有效\par 
+6
+\newpage
+\chapter{微分学}
+\section{一元函数}
+\subsection{函数}
+如果依某一法则或规律，对$\mathcal{X}$中的每一$x$值总有一个确定的数值$y \in \mathcal{Y} $和它对应，则变量$y$就称为变量$x$的函数
+\subsection{几类重要函数的分类}
+\begin{enumerate}
+    \item 有理整函数及分式函数
+        $$y=a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_0$$
+        $$y=\frac{a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_0}{b_mx^m+b_{m-1}x^{m-1}+\dots+b_1x+b_0}$$
+    \item 幂函数$$y=x^{\mu}$$
+    \item 指数函数$$y=a^x,\quad a\geqslant 0\,\mathrm{and}\,\neq 1$$
+    \item 对数函数$$y=\log_a x,\quad a\geqslant 0\,\mathrm{and}\,\neq 1\,\mathrm{and}\,x\geqslant 0$$
+\end{enumerate}
+
+\subsection{连续函数的性质}
+\paragraph{布尔查诺-柯西第一定理}
+函数$f(x)$在闭区间上定义且连续，若在区间两端取异号。则在区间内必有一点$c$使$f(c)=0$
+\paragraph{布尔查诺方法}
+将区间对半分，保留区间两端上的函数值取异号的区间，重复上述操作，对第n个区间$[a_n,b_n]$,有
+\begin{equation}
+f(a_n)<0,\quad f(b_n)>0
+\label{两端点不等式}
+\end{equation}
+它的区间长度
+$$
+b_n-a_n=\frac{b-a}{2^n}
+$$
+显然，随着n的趋向$+\infty$有$\lim (b_n-a_n) =0$,因此在区间[a,b]中存在点c，满足
+$$
+\lim a_n =\lim b_n =c
+$$
+将不等式\eqref{两端点不等式}取极限。应用函数的连续性
+$$
+f(c)=\lim f(a_n) \leqslant 0 \quad and \quad f(c)=\lim f(b_n) \geqslant 0
+$$
+则必有$f(c)=0$
+
+\chapter{积分学}
+\section{黎曼和}
+\paragraph{定义}
+设函数$f(x)$在给定区间$[a,b]$上,用任意方法在$a$和$b$之间插入分点
+$$
+x_0=a,x_1,x_2,\cdots,x_{n-1},x_n=b
+$$
+把区间分成若干部分,使用$\lambda$来表示差$\Delta x_i=x_{i+1}-x_i (i=1,2,\cdots,n-1)$
+中最大的部分
+
+从各区间中任取一点$x=\xi_{i}$
+$$x_i \leq \xi_i \leq x_{i+1} \quad (i=1,2,\cdots,n-1)$$
+并做和
+$$
+\sigma=\sum_{i=1}^{n-1} f(\xi_i) \Delta x_i
+$$
+若
+$$
+\lim_{\lambda \rightarrow 0} \sigma =I
+$$
+成立,我们称该极限为$f(x)$在$a$到$b$的区间上的定积分,并记为
+$$
+I=\int_a^b f(x) \, \mathrm{d}x
+$$
+$f(x)$叫做区间$[a,b]$上的\textbf{可积函数}
+\chapter{级数}
+\paragraph{定义}
+设给定某一无穷序列
+$$
+a_1,a_2,\cdots,a_n,\cdots
+$$
+这些数的和称为无穷级数，记为：
+$$
+\sum_{n=1}^{\infty} a_n =a_1+a_2+\cdots+a_n+\cdots
+$$
+
+\paragraph{部分和}
+若弃去级数前$m$个项，所留下的剩余的项的和为级数第$m$项后的\textbf{余式}
+$$
+    A_m=\sum_{n=m+1}^{\infty} a_n=\sum_{n=1}^{\infty} a_n - \sum^{m} a_n
+$$
+\end{document}

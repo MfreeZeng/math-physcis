@@ -1,0 +1,262 @@
+\documentclass[12pt]{report}
+\usepackage[UTF8]{ctex}
+\usepackage{graphicx}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsfonts}
+\usepackage{physics}
+\usepackage{pifont}
+\usepackage{wrapfig}
+\usepackage[final=true,hidelinks]{hyperref}
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\MakeUppercase{\romannumeral #1}}
+\begin{document}
+\title{线性代数-数理统计\thanks{This note was made by \LaTeX \quad Final edition \today}}
+\date{2022/1/29}
+\author{Zeng deliu}
+\maketitle
+\tableofcontents{}
+\chapter{线性代数}
+\section{矩阵方程\texorpdfstring{$A\mathbf{x}=\mathbf{b}$}{}}
+$$\left(\begin{matrix}
+    a_{11} &a_{12} &\dots &a_{1n}\\
+    a_{21} &a_{22} &\dots &a_{2n}\\
+    \vdots &\vdots &\ddots&\vdots\\
+    a_{m1} &a_{m2} &\dots &a_{mn}
+\end{matrix}\right)
+\left(\begin{matrix}chapter
+    x_1\\x_2\\\vdots \\x_n
+\end{matrix}\right)
+=\left(\begin{matrix}
+    b_1\\b_2\\\vdots \\b_n
+\end{matrix}\right)$$
+\paragraph{定理1}
+    设$A$是$m\times n$矩阵，则下列命题在逻辑上等价：
+    \begin{align*}
+        &a.\quad\mbox{对$\mathbb{R} ^m$中每个$\boldsymbol{b}$，方程$A\boldsymbol{x}=\boldsymbol{b}$有解}\\
+        &b.\quad\mbox{$\mathbb{R} ^m$中每个$\boldsymbol{b}$都是$A$的列的一个线性组合}\\
+        &c.\quad\mbox{$A$的各列生成$\mathbb{R} ^m$}\\
+        &d.\quad\mbox{$A$在每一行都有一个主元位置}
+    \end{align*}
+\paragraph{线性相关与线性无关}
+    矩阵$A$各列线性无关当且仅当方程$A\boldsymbol{x}=\boldsymbol{0}$仅有平凡解\par
+    向量组的向量个数超过每个向量的元素个数，那么这个向量组线性相关
+\paragraph{线性变换}
+    我们将$A$视为一个“作用”，在方程$A\boldsymbol{x}=\boldsymbol{b}$中
+    $A$以乘法作用于向量$\boldsymbol{x}$，使其变为$\boldsymbol{b}$\\
+    由$\boldsymbol{x}$到
+\chapter{概率论与数理统计}
+\section{基本概念}
+\paragraph{随机实验}
+    具有以下特点的实验称之为随机试验
+\begin{enumerate}
+    \item 可在相同条件下重复进行
+    \item 可能结果不止一个，且能事先明确所有可能结果
+    \item 实验之前不能确定实验结果
+\end{enumerate}
+\paragraph{样本空间与随机事件}\quad \par
+    对于一个随机试验E的所有可能结果的集合称之为$E$的样本空间，记为$S$，
+    样本空间中的每一个元素称为样本点\par
+    $S$的子集称为E的随机事件，而仅有一个样本点组成的单点集称为基本事件\par
+    $S$是自身的子集，称为必然事件，$\varnothing$不含样本点，也是子集，称为不可能事件\par
+\paragraph{事件的关系与运算}
+    \begin{enumerate}
+        \item $A\subset B$ \quad 称事件$B$包含事件$A$,即$A$发生必导致$B$发生
+        \item $A\cup B$ \quad \textbf{和事件}，当且仅当$A$，$B$至少一个发生时，$A\cap B$发生
+        \item $A\cap B$ \quad \textbf{积事件}，当且仅当$A$，$B$同时发生，$A\cap B$发生
+        \item $A-B$ \quad \textbf{差事件}，当且仅当$A$发生，$B$不发生时$A-B$发生
+        \item $A\cap B=\varnothing$ \quad $A$与$B$\textbf{互不相容，互斥}。基本事件两两互斥
+        \item $A\cup B=S, A\cap B=\varnothing$ \quad $A,B$互为\textbf{逆事件或对立事件}，A的对立事件记为$\bar{A}$
+    \end{enumerate}
+\newpage
+\section{数学期望与方差}
+\subsection{期望}
+\paragraph{定义}
+若级数$$\sum_{k=1}^\infty x_k p_k$$
+绝对收敛，则定义期望为
+$$E(x)=\sum_{k=1}^{\infty} x_k p_k$$
+对于连续型变量，定义期望为(积分绝对收敛)
+$$E(x)=\int_{-\infty}^{\infty} x f(x)dx$$
+
+\paragraph{随机变量的函数的期望}
+$$E(Y)=E(g(x))=E(x)=\sum_{k=1}^{\infty} g(x_k) p_k=\int_{-\infty}^{\infty} g(x) f(x)dx$$
+\paragraph{二维随机变量的期望}
+$$E(Z)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} z(x,y) f(x,y)dxdy$$
+注意有：
+$$E(X)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} x f(x,y)dxdy$$
+$$E(Y)=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} y f(x,y)dydx$$
+\paragraph{期望的性质}
+\begin{enumerate}
+    \item $E(C)=C$,\quad \mbox{当$C$为常数时}
+    \item $E(CX)=CE(X)$,\quad $X$\mbox{为随机变量}，$C$\mbox{为常数时}
+    \item $E(X+Y)=E(X)+E(Y)$,\quad $X$,$Y$\mbox{是随机变量时}
+    \item $E(XY)=E(X)E(Y)$,\quad $X$与$Y$\mbox{互相独立时}
+\end{enumerate}
+\subsection{方差}
+
+\paragraph{定义}方差的定义：
+$$D(X)=E\{[X-E(X)]^2\}$$
+标准差：$$\sqrt{D(X)}$$
+连续型：$$\int_{-\infty}^{\infty} [x-E(X)]^2f(x) dx$$
+其他计算方法：
+$$D(X)=E(X^2)-E^2(X)$$
+
+\paragraph{性质}
+\begin{enumerate}
+    \item $D(C)=0$
+    \item $D(CX)=C^2D(X)$
+    \item $D(X+Y)=D(X)+D(Y)+2E\{[X-E(X)][Y-E(Y)]\}$
+    \item $D(X+Y)=D(X)+D(Y)$,\quad $X,Y$独立时
+    \item $D(X)=0$,\quad 当且仅当\quad $P\{X=E(X)\}=1$
+\end{enumerate}
+\newpage
+\paragraph{各分部的期望和方差} 这里列举了常见分布的期望和方差\par
+\begin{table}[hbp]
+    \begin{center}
+        \begin{tabular}{lccl}
+        \hline
+        分布 &$E(X)$ &$D(X)$ &密度函数\\
+        \hline
+        $0-1$分布 &$0-1$ &$p$ &$p(1-p)$\\
+        二项分布$b(n,p)$ &$np$ &$np(1-p)$ &$P\{X=k\}=C_n^kp^k(1-p)^{n-k}$\\
+        泊松分布$\pi(\lambda)$ &$\lambda$ &$\lambda$ &$P\{X=k\}=\frac{\lambda ^k}{k!} e^{-\lambda}$\\
+        平均分布$U(a,b)$ &$\frac{a+b}{2}$&$\frac{(b-a)^2}{12}$ &$f(x)\begin{cases}\frac{1}{(b-a)}&a\leq x\leq b\\0&else\end{cases}$\\
+        指数分布$E(\theta)$&$\theta$&$\theta^2$&$f(x)=\frac{1}{\theta}e^{\frac{-x}{\theta}}$\\
+        正态分布$N(\mu,\sigma ^2)$&$\mu$&$\sigma ^2$&$f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{\sigma ^2}}$\\
+        \hline
+        \end{tabular}
+    \end{center}
+    \caption{分布的标签}
+\end{table}
+\paragraph{切比雪夫不等式}
+\begin{equation}
+    P\{|x-\mu|<\varepsilon\}\geqslant 1-\frac{\sigma ^2}{\varepsilon ^2}
+    \label{切比雪夫不等式下界}
+\end{equation}
+\begin{equation}
+    P\{|x-\mu|>\varepsilon\}\leqslant \frac{\sigma ^2}{\varepsilon ^2}
+    \label{切比雪夫不等式上界}
+\end{equation}
+\section{协方差和相关系数}
+
+\paragraph{定义}
+量$E\{[X-E(X)][Y-E(Y)]\}$为$X,Y$的协方差
+$$\rm{Cov}(X,Y)=E\{[X-E(X)][Y-E(Y)]\}=E(XY)-E(X)E(Y)$$
+相关系数：
+$$\rho_{XY}=\frac{\mathrm{Cov(X,Y)}}{\sqrt{D(X)}\sqrt{D(X)}}$$
+$$\rho_{XY}=0 \quad\Rightarrow E(XY)=E(X)E(Y)$$
+
+\paragraph{性质}
+\begin{enumerate}
+    \item 相关性描述变量之间的线性相关程度，独立性描述变量之间独立的关系,即$$\rho=0 \rightarrow \mbox{不相关}\rightarrow \mbox{无线性关系}\nrightarrow \mbox{相互独立}$$
+    \item $\mathrm{Cov}(aX,bY)=ab\mathrm{Cov}(X,Y)$
+    \item $\mathrm{Cov}(X_1+X_2,Y)=\mathrm{Cov}(X_1,Y)+\mathrm{Cov}(X_2,Y)$
+    \item $\mathrm{Cov}(X,X)=D(X)$
+    \item $D(X+Y)=D(X)+D(Y)+2\mathrm{Cov}(X,Y)$
+    \item 用$a+bX$表达$Y$时，近似最好的：$$b=\frac{\mathrm{Cov(X,Y)}}{\sqrt{D(X)}},\quad a=E(Y)-E(X)*b,\quad \sigma_{min}=(1-\rho ^2)D(Y)$$
+    \item 当变量服从二维正态函数时，相关性等价独立性
+\end{enumerate}
+
+\section{变量的矩}
+$k$阶原点矩：
+$$E(X^k)$$
+
+$k$阶中心矩：
+$$E\{[X-E(X)]^k\}$$
+\section{大数定理和中心极限定理}
+
+\subsection{大数定理}
+
+\paragraph{辛钦大数定理}
+$$\lim_{n\rightarrow \infty}P\left\{\bigg|\frac{1}{n}\sum_{k=1}^n X_k-\mu\bigg|<\epsilon\right\}=1$$
+\subsubsection{中心极限定理}
+\paragraph{独立同分布的中心极限定理}
+随机变量$X_1,X_2,\cdots X_n \cdots$相互独立且服从同一分布
+$$\frac{\sum X_k-n\mu}{\sqrt{n}\sigma} \sim N(0,1)$$
+$$\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$$
+$$\overline{X} \sim N(\mu,\sigma ^2/n)$$
+
+\paragraph{二项分布中心定理}
+我们可以将$\eta_n \sim b(n,p)$看作是$n$个$0-1分布$的随机变量$X_k$相加
+$$\eta_n =\sum^n X_k$$
+$$\lim_{n\rightarrow \infty}P \left\{\frac{\eta_n-np}{\sqrt{np(1-p)}}\leqslant x\right\}=\varPhi(x)$$
+即
+$$\lim_{n\rightarrow \infty}P \left\{\frac{\eta_n-E(\eta_n)}{\sqrt{D(\eta_n)}}\leqslant x\right\}=\varPhi(x)$$
+\section{样本和抽样分布}
+
+\subsection{样本的独立性}简单随机样本具有样本间相互独立的性质\par
+密度函数：
+$$f^*(x_1,x_2,\cdots x_n)=\prod_{i=1}^n f(x_i)$$
+
+\subsection{抽样分布}
+\paragraph{样本统计量}我们往往只关心几个样本的统计量
+\begin{enumerate}
+    \item 样本均值$$\overline{X}=\frac{1}{n}\sum X_i$$
+    \item 样本方差$$S^2=\frac{1}{n-1}\sum(X_i-\overline{X})^2=\frac{1}{n-1}\left(\sum X^2_i-n\overline{X}^2\right)$$
+\end{enumerate}
+
+\paragraph{样本分布}
+\begin{enumerate}
+    \item 卡方分布 $X\sim N(0,1)$ $\chi^2(n)=X^2_1+X^2_2+\cdots +X^2_n$
+    \begin{enumerate}
+        \item 可加性$\quad \chi^2(n_1)+\chi^2(n_2) \sim \chi^2(n_1+n_2)$
+        \item 期望和方差$\quad E(\chi^2)=n,\quad D(\chi^2)=2n$
+        \item 上分位数
+    \end{enumerate}
+    \item $t$分布：若$X \sim N(0,1),\quad Y \sim \chi^2(n)$：$$t={\frac{X}{\sqrt{Y/n}}},\quad t \sim t(n)$$
+    \item 正态分布的样本均值和样本方差分布
+    \begin{enumerate}
+    \item 对任意有均值 $\mu$ 方差 $\sigma^2$的总体，有$$E(\overline{X})= \mu,\quad D(\overline{X})=\sigma^2/n,\quad E(S^2)=\sigma^2$$
+        \item 样本来自$N(\mu,\sigma^2)$，有
+        \begin{enumerate}
+            \item $$\overline{X} \sim N(\mu,\sigma^2/n)$$
+            \item $$\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$$
+            \item $\overline{X}$与$S^2$相互独立
+            \item $$\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1),\quad \frac{\overline{X}-\mu}{S/\sqrt{n}} \sim t(n-1)$$
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\section{参数估计}
+\subsection{点估计}
+
+\paragraph{矩估计法}
+总体的k阶矩和样本的k阶矩相等，样本k阶矩收敛于总体k阶矩
+$$\mu_k=E(X^k)=A_k=\frac{1}{n}\sum_{i=1}^n X_i^k$$
+
+\paragraph{最大似然法}
+观察到的样本就是概率最大的一组样本
+$$L(x_1,x_2,\cdots,x_n;\hat{\theta})=\max_{\theta \in \varTheta} L(x_1,x_2,\cdots,x_n;\theta)$$
+$$L=\prod_{i=1}^n f(x_i;\theta)$$
+$$\frac{\mathrm{d}}{\mathrm{d}\theta}L(\theta)=0 \quad \rm{or} \quad \frac{d}{d\theta}\ln L=0$$
+正态分布$N(\mu,\sigma^2)$的最大似然估计量为$$\hat{\mu}=\overline{X},\quad \hat{\sigma}^2=\frac{1}{n}\sum_{i=1}^n (X_i-\overline{X})^2$$
+\paragraph{估计量的评选}
+\begin{enumerate}
+    \item 无偏性$$E(\hat{\theta})=\theta,\quad E(\hat{\sigma}^2)=\sigma^2$$
+    \begin{enumerate}
+        \item $\overline{X},S^2$是无偏估计量
+        \item 样本$k$阶矩$A_k$是总体$k$阶矩$\mu_k$的无偏估计量
+    \end{enumerate}
+    \item 有效性：对两个无偏估计量，取使$D(\hat{\theta})$取最小的$\hat{\theta}$为较有效
+    \item 相合性：$$\lim_{n\rightarrow \infty} P\{|\hat{\theta}-\theta|<\epsilon\}=1$$
+\end{enumerate}
+
+\subsection{区间估计}
+
+\paragraph{正态分布的均值和方差的区间估计}
+\begin{enumerate}
+    \item 均值$\mu$的置信区间:
+    \begin{enumerate}
+        \item $\sigma$已知时，置信水平为$1-\alpha$:$$\left(\overline{X}\pm \frac{\sigma}{\sqrt{n}} z_{\frac{\alpha}{2}}\right)$$
+        \item $\sigma$未知时，置信水平为$1-\alpha$：$$\left(\overline{X}\pm \frac{S}{\sqrt{n}} t_{\frac{\alpha}{2}}(n-1)\right)$$
+    \end{enumerate}
+    \item 方差$\sigma^2$区间:$$\left(\frac{(n-1)S^2}{\chi_{\frac{\alpha}{2}}^2(n-1)},\frac{(n-1)S^2}{\chi_{1-{\frac{\alpha}{2}}}^2(n-1)}\right)$$
+    \item 单侧置信区间:将以上的$\frac{\alpha}{2} \rightarrow \alpha$即可
+\end{enumerate}
+
+\section{假设检验}
+两种错误：\par
+第\Rmnum{1}类错误：弃真，$P\left\{\mbox{当$H_0$为真时拒绝$H_0$}\right\}\leqslant \alpha$\par
+第\Rmnum{2}类错误：取伪，$P\left\{\mbox{当$H_0$为假时接收$H_0$}\right\}\leqslant \beta$\par
+只对\Rmnum{1}类错误控制，不考虑\Rmnum{2}类错误的检验为\textbf{显著性检验}
+\end{document}

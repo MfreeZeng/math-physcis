@@ -1,0 +1,605 @@
+\documentclass[12pt]{report}
+\usepackage[UTF8]{ctex}
+\usepackage{graphicx}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsfonts}
+\usepackage{physics}
+\usepackage{pifont}
+\usepackage{wrapfig}
+\usepackage[final=true,hidelinks]{hyperref}
+\newcommand{\dotq}{\dot{q}}
+\newcommand{\Lagfunc}{L(q,\dot{q},t)}
+\newcommand{\Lageq}{\dv{t}\pdv{L}{\dotq _i}-\pdv{L}{q_i} =0}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\vecb}[1]{\boldsymbol{#1}}
+%\dv 微分式 *为单行 %\pdv 偏微分式 \int_{}^{}  \,dx 
+\begin{document}
+    \title{物理}
+    \date{2022/1/29}
+    \author{Zeng deliu}
+    \maketitle
+    \tableofcontents{}
+\chapter{力学}
+\section{拉格朗日函数}
+同时给定系统的广义位置和速度就能确定系统的状态，并预测以后的运动
+\par\underline{加速度与坐标、速度的关系式称为运动方程}\par
+力学系统的最一般表述由\textbf{最小作用量原理}给出,因此每一个系统都能用一个函数表述，
+即拉格朗日函数：
+$$\Lagfunc$$
+
+注意，$q,\dot{q}$和$q(t),\dot{q}$的区别，前者是系统状态在位形空间中的坐标，后者是一个过程
+前者在切丛
+\subsection{最小作用量}
+在时刻$t_1$和$t_2$时刻时，系统位置为$q^{(1)}$和$q^{(2)}$\\
+系统在两位置间的运动使得积分
+\begin{equation}
+    S =\int_{t_1}^{t_2} L(q,\dot{q},t) \,\dd t
+    \label{作用量}
+\end{equation}
+取最小值，$S$称为作用量\par
+为使$S$取得最小值，意味着在某个自由度上位置由$q(t)$确定时任意函数
+$$q(t)+\var{q(t)}$$
+都会使$S$增大，S取最小值就意味着$S$的变分$\var{S}$要为0，于是最小作用量原理就可以写为
+$$\var{S} = \int_{t_1}^{t_2} L(q,\dot{q},t) \,\dd t$$
+或者变分后的形式：
+$$\int_{t_1}^{t_2} 
+\left(\pdv{L}{q}\var{q}
+ +\pdv{L}{\dot{q}}\var{\dot{q}}\right) \dd t =0$$ 
+注意到$\var{\dot{q}}=\displaystyle{\dv{t}}\var{q}$，将第二项分部积分得：
+$$\var{S}=\pdv{L}{\dot{q}}\var{q}\,\bigg|_{t_1}^{t_2}
+\mathrel{+}\int_{t_1}^{t_2} \left( \pdv{L}{q}\var{q}
+ -\dv{t}\pdv{L}{\dot{q}}\right)\!\var{q}\,\dd t =0$$
+第一项在确定端点等于零,剩余积分在$\var{q}$ 任意取值时都应该等于零，这要求括号内部恒等于零
+我们得到方程:
+\begin{equation}
+    \dv{t}\pdv{L}{\dot{q}}-\pdv{L}{q} =0 \label{lagrange方程单自由度}
+\end{equation}
+对$s$个自由度得系统，在最小作用量原理中各自由度独立得变分，可以得到$s$个方程
+\begin{equation}
+    \Lageq \label{lagrange方程s自由度}
+\end{equation}
+\subsection{拉格朗日函数的不确定性}
+Lagrange函数可以加上一个位置和时间的任意函数的\textbf{时间全导数}$f(t)$，并满足方程
+\subsection{惯性参考系}
+惯性参考系下有两个性质:
+\begin{align*}
+    &\mbox{\ding{172}空间相对于其均匀且各向同性}\\
+    &\mbox{\ding{173}时间相对于其均匀}
+\end{align*}
+因此其$L$不显含$\boldsymbol{r}$和$t$
+\begin{align*}
+    &\dv{t}\pdv{L}{\vecb{v}}=\pdv{L}{\vecb{r}} =0\\
+    \Rightarrow &\pdv{L}{\vecb{v}}=\const \Rightarrow \vecb{v}=\const
+\end{align*}
+
+\subsection{伽利略相对性原理}
+存在无穷多个惯性参考系，且相互作匀速直线运动，其中时空相同，力学规律也相同
+
+\subsection{伽利略变换}
+\begin{align*}
+    \vecb{r}'&=\vecb{r}+\vecb{V}t\\
+    t'&=t
+\end{align*}
+
+\section{拉格朗日函数的形式}
+\subsection{自由粒子无互相作用}
+\begin{equation}
+    L(v)=\frac{m}{2}{v^2}
+    \label{自由粒子无互相作用lagrange函数}
+\end{equation}
+质点系:$\displaystyle{L=\sum_a \frac{{m_a}{v_a}^2}{2}}$
+不同坐标系下的形式：
+$$L=\begin{cases}
+    \frac{m}{2} (\dot{x}^2+\dot{y}^2+\dot{z}^2) &\text{直角坐标系}\\
+    \frac{m}{2} (\dot{r}^2+{r^2}\dot{\varphi}^2+\dot{z}^2) &\text{柱坐标系}\\
+    \frac{m}{2} (\dot{r}^2+{r^2}\dot{\theta }^2+{r^2}{\sin^2{\theta}\dot{\varphi}^2)} &\text{球坐标系}
+\end{cases}$$
+\subsection{封闭质点系，有相互作用无外力}
+\begin{equation}
+    L=\sum_a \frac{{m_a}{v_a}^2}{2}-U(\vecb{r_1},\vecb{r_2},\dots)
+    \label{封闭质点系有相互作用无外力}
+\end{equation}
+\begin{align*}
+    &\dv{t}\pdv{T}{\vecb{v}}=-\pdv{U}{\vecb{r}}\\
+    \Rightarrow &m \dv{\vecb{v}}{t}=-\pdv{U}{\vecb{r}}\Rightarrow \vecb{F}=-\pdv{U}{\vecb{r}}
+\end{align*}
+在已知外场B下：$$L=T(q_a,\dot{q}_a)+T(q_b,\dot{q}_b)-U(q_a,q_b(t))$$
+已知$q_b(t)$ 下 $T(q_b,\dot{q}_b)$ 是时间的全导数，可省略
+$$L=T(q_a,\dot{q}_a)-U(q_a,q_b(t))$$
+$$m\dot{\vecb{v}}=-\pdv{U}{\vecb{r}}$$
+
+\section{守恒定律}
+\subsection{能量守恒}
+能量守恒由时间的均匀性推出，时间均匀性使$L$不显含时间$t$
+\begin{equation*}
+    \begin{split}
+    \dv{L}{t}
+    &=\sum_i \pdv{L}{q_i}\dot{q}_i + \sum_i \pdv{L}{\dot{q}_i}\ddot{q}_i\\
+    &=\sum_i \dv{t}\pdv{L}{q_i}\dot{q}_i + \sum_i \pdv{L}{\dot{q}_i}\ddot{q}_i\\
+    &=\dv{t}\left(\sum_i \pdv{L}{\dot{q}_i}\dot{q}_i\right)
+    \end{split}
+\end{equation*}
+这样有定义能量$E$
+$$\dv{t}\left(\sum_i \pdv{L}{\dot{q}_i}\dot{q}_i-L\right)=0$$
+定义能量：
+\begin{equation}
+    E=\left(\sum_i \pdv{L}{\dot{q}_i}\dot{q}_i-L\right)
+    \label{能量守恒L}
+\end{equation}
+\subsection{动量守恒}
+动量守恒由空间均匀性推出，对任意小的平移变换$\vecb{\varepsilon}$，$L$要保持不变,有
+$$\var{L}=\sum \pdv{L}{\vecb{r}} \var{\vecb{r}} = \vecb{\varepsilon}\vdot \sum\pdv{L}{\vecb{r}}=0$$
+这要求：
+\begin{equation}
+    \pdv{L}{\vecb{r}}=\dv{t}\pdv{L}{\vecb{v}}=0
+    \label{动量守恒L}
+\end{equation}
+定义动量$\vecb{P}$
+\begin{equation}
+    \vecb{P}=\pdv{L}{\vecb{v}} \,\mbox{或}\, P=\pdv{L}{\dot{q}}
+    \label{动量L}
+\end{equation}
+\subsection{角动量守恒}
+角动量守恒是由空间各向同性导出的，意味着系统整体转动力学性质不变\par
+引入无穷小转动$\var{\vecb{\varphi}}$，方向沿转动轴，大小为$\var{\phi}$
+
+\begin{wrapfigure}{r}{3.5cm}
+    \includegraphics[height=5cm]{pic/角动量.png}
+    \caption{角动量}
+\end{wrapfigure}
+原点指向质点的径矢在转动后的位移为：
+$$\abs{\var{\vecb{r}}}=r\sin(\theta) \vdot \var{\varphi}$$
+显然有$\var{\vecb{r}}=\var{\vecb{\varphi}} \cross \vecb{r}$
+$$\var{\vecb{v}}=\var{\vecb{\varphi}} \cross \vecb{v}$$
+代入$L$不变条件:
+$$\var{L}=\sum \qty(\pdv{L}{\vecb{r}} \vdot \var{\vecb{r}}
+ + \pdv{L}{\vecb{v}} \vdot \var{\vecb{v}})=0$$
+做代换$\pdv*{L}{\vecb{v}}=\vecb{p},\quad \pdv*{L}{\vecb{v}}=\vecb{\dot{p}}$
+$$\sum\qty[\,\vecb{\dot{p}}\vdot (\var{\vecb{\varphi}}\cross \vecb{r})+ \vecb{p}\vdot (\var{\vecb{\varphi}}\cross \vecb{v})\,]=0$$
+或者
+$$\var{\vecb{\varphi}}\vdot \sum\qty[\,\vecb{r}\cross \vecb{\dot{p}}+ \vecb{v}\cross \vecb{p})\,]
+=\var{\vecb{\varphi}}\vdot \dv{t}\sum \vecb{r}\cross \vecb{p}=0$$
+由$\var{\vecb{\varphi}}$的任意性， $$\dv{t}\sum \vecb{r}\cross \vecb{p}=0$$
+即封闭系统中:
+$$\vecb{M}=\sum \vecb{r}\cross \vecb{p}$$
+守恒，定义为角动量$\vecb{M}$\par
+可以推得角动量在外场的对称轴上的投影总是守恒\par
+同时角动量在任意轴的投影都能用拉格朗日对该轴上转角微分求出
+\begin{equation}
+    M=\sum \pdv{L}{\dot{\varphi}}
+    \label{角动量守恒}
+\end{equation}
+在直角坐标系中计算沿某一轴的角动量分量可以使用下列行列式
+\begin{equation*}
+    \begin{split}
+    \vecb{M}&=\mdet{\vecb{i}&\vecb{j}&\vecb{k}\\x&y&z\\\dot{x}&\dot{y}&\dot{z}}\\
+        &= \mdet{y&z\\\dot{y}&\dot{z}}\vecb{i}
+        - \mdet{x&z\\\dot{x}&\dot{z}}\vecb{j}
+        + \mdet{x&y\\\dot{x}&\dot{y}}\vecb{k}
+    \end{split}
+\end{equation*} %
+
+\subsection{力学相似性}
+$L$函数乘以任意常数不改变运动方程\par
+考虑势能函数是坐标的齐次函数情况:
+$$U(\alpha\vecb{r}_1,\alpha\vecb{r}_2,\dots)={\alpha}^k U(\vecb{r}_1,\vecb{r}_2,\dots)$$
+引入变换：
+$$\vecb{r}\rightarrow \alpha \vecb{r} \quad t \rightarrow \beta t$$
+若满足$$\frac{{\alpha}^2}{{\beta}^2}={\alpha}^k$$
+运动方程不变，并有：
+$$\frac{t'}{t}=\qty(\frac{l'}{l})^{1-\flatfrac{k}{2}}\quad
+\frac{v'}{v}=\qty(\frac{l'}{l})^{\flatfrac{k}{2}}\quad
+\frac{E'}{E}=\qty(\frac{l'}{l})^{k}\quad
+\frac{M'}{M}=\qty(\frac{l'}{l})^{1+\flatfrac{k}{2}}$$\par
+微振动势能是坐标的二次函数\par
+均匀力场势能是坐标的线性函数\par
+引力和库仑力势能与坐标为反比
+\subsection{位力定理}
+系统在有限空间运动，势能是坐标的k齐次函数，动能和势能的时间平均值有如下关系：
+\begin{equation}
+    \overline{T}=\frac{k}{2} \,\overline{U}
+    \label{位力定理}
+\end{equation}
+
+\section{运动方程的积分}
+\subsection{一维运动}
+在一个自由度的系统的运动，定常外部条件下，有：
+$$L=\frac{1}{2}a(q) (\dot{q})^2-U(q)$$
+同时有：
+$$E=\frac{m\dot{q}^2}{2}+U(q)$$
+解微分方程，分离变量得：
+$$\dv{q}{t}=\sqrt{\frac{2}{m}[E-U(q)]}$$
+积分得：
+\begin{equation}
+    t=\sqrt{\frac{m}{2}} \int \frac{\dd q}{\sqrt{E-U(q)}} +\const
+\end{equation}
+运动只能发生在动能大于0，即$U<E$的区域\par 
+$U=E$的点确定了运动的边界，这种点称为停滞点，由两个停滞点限定为有限运动，单面或不受限的为无限运动\par
+一维有限运动是振动，其周期为：
+\begin{equation}
+T(E)=\sqrt{2m} \int_{q_1 (E)}^{q_2 (E)} \frac{\dd q}{\sqrt{E-U(q)}}
+\label{一维有限振动周期}
+\end{equation}
+
+\newpage
+\subsubsection{习题}
+\paragraph{习题1}重力摆
+$$
+T=2\sqrt{\frac{l}{g}} \int_{0}^{\varphi_0} \frac{\mathrm{d}\varphi}{\sqrt{\sin^2(\varphi_0/2)-\sin^2(\varphi /2)}}
+$$
+set $\sin \varsigma=\frac{\sin (\varphi /2)}{\sin (\varphi_0 /2)}$, have:
+$$\mathrm{d}\varphi =2\frac{\sin(\varphi_0 /2)\cos(\varsigma)}{\cos(\varphi /2)}\,\mathrm{d}\varsigma $$
+and 
+$$0 \leq \varsigma \leq \frac{\pi}{2}$$
+than:
+\begin{equation*}
+    \begin{array}{ll}
+        T&=\displaystyle{2\sqrt{\frac{l}{g}} \int_{0}^{\varphi_0} \frac{\mathrm{d}\varphi}{\sin (\varphi_0 /2) \sqrt{1-\sin^2 \varsigma}}}\\
+        &=\displaystyle{2\sqrt{\frac{l}{g}} \int_{0}^{\varphi_0} \frac{\mathrm{d}\varphi}{\sin (\varphi_0 /2) \cos \varsigma}}\\
+        &=\displaystyle{2\sqrt{\frac{l}{g}} \int_{0}^{\pi /2} \frac{2\sin(\varphi_0 /2)\cos \varsigma \,\mathrm{d}\varsigma}{\sin(\varphi_0 /2)\cos \varsigma \cos(\varphi/2)}}\\
+        &=\displaystyle{4\sqrt{\frac{l}{g}} \int_{0}^{\pi /2} \frac{\mathrm{d}\varsigma}{\cos(\varphi/2)}}\\
+        &=\displaystyle{4\sqrt{\frac{l}{g}} \int_{0}^{\pi /2} \frac{\mathrm{d}\varsigma}{\sqrt{1-\sin^2(\varphi_0 /2)\sin^2 \varsigma}}}
+    \end{array}
+\end{equation*}
+def
+$$
+K(k)=\int_{0}^{\pi /2} \frac{\mathrm{d}\varsigma}{\sqrt{1-k^2\sin^2 \varsigma}}
+$$
+so
+$$
+T=4\sqrt{\frac{l}{g}} K(\sin\frac{\varphi_0}{2})
+$$
+\subsection{由周期确定势能}
+求解\eqref{一维有限振动周期}, 已知$T$求$U$.
+令$\displaystyle{\dd q=\dv{q}{U} \dd U}$
+\begin{equation*}
+    \begin{split}
+        T(E)&=\sqrt{2m} \qty(\int_0^E \dv{q_2(U)}{U}\frac{\dd U}{\sqrt{E-U}}+
+        \int_E^0 \dv{q_1(U)}{U}\frac{\dd U}{\sqrt{E-U}})\\
+        &=\sqrt{2m} \int_0^E \qty(\dv{q_2(U)}{U} - \dv{q_1(U)}{U})\frac{\dd U}{\sqrt{E-U}}
+    \end{split}
+\end{equation*}
+两边同除以$\sqrt{\alpha - E}$，$\alpha$ 是参数，对$E$从0到$\alpha$积分
+\begin{equation*}
+    \begin{split}
+        \int_0^{\alpha} \frac{T(E) \dd E}{\sqrt{\alpha -E}}
+        &=\sqrt{2m} \int_0^{\alpha} \int_0^E
+        \qty( \dv{q_2(U)}{U}-\dv{q_1(U)}{U} ) \frac{\dd U \dd E}{\sqrt{(\alpha -E)(E-U)}}\\
+        &=\sqrt{2m} \int_0^{\alpha} \qty( \dv{q_2(U)}{U}-\dv{q_1(U)}{U} )\dd U 
+        \int_U^{\alpha} \frac{\dd E}{\sqrt{(\alpha -E)(E-U)}}\\
+        &=\pi \sqrt{2m}\,[q_2(\alpha) - q_1(\alpha)]
+    \end{split}
+\end{equation*}
+$U$代替$\alpha$
+$$q_2(U) - q_1(U)=\frac{1}{\pi \sqrt{2m}}\int_0^{U} \frac{T(E) \dd E}{\sqrt{U -E}}$$
+\subsection{折合质量}
+两个相互作用的质点$m_1$，$m_2$组成的系统（二体问题）可以归结为一个质点$m$在外场中的运动
+$$ m=\frac{m_1 m_2}{m_1 + m_2} $$
+
+\subsection{有心力场中的运动}
+外场的势能仅依赖于到给定的定点的距离，称为有心力场，其势能为：
+$$\vecb{F}= - \pdv{U(r)}{\vecb{r}}= - \dv{U}{r} \, \frac{\vecb{r}}{r}$$
+有心力场动量矩守恒，轨迹在同一平面内，以极坐标$(r,\varphi)$
+$$ L= \frac{m}{2} (\dot{r}^2 + r^2 \dot{{\varphi}}^2) - U(r) $$
+由于拉格朗日函数不显含$\varphi$
+$$ \dv{t} \pdv{L}{\dot{\varphi}}=\pdv{L}{\varphi}=0 $$
+广义动量也是动量矩
+$$ M_z = p=\pdv{L}{\dot{\varphi}}=m r^2 \dot{\varphi}=\const $$
+对无限接近的两径矢和其轨迹围城的扇形面积可以表示为$ \dd f = (\flatfrac{1}{2}) r^2 \dd \varphi $
+$$ M= \frac{mr^2 \dd \varphi}{\dd t}= 2m \dot{f} $$
+所以动量矩为常数时，相同时间内质点径矢扫过的面积相等（\textbf{开普勒第二定律}）。
+我们现在可以用M来代入能量函数
+\begin{equation}
+    E= \frac{m}{2} (\dot{r}^2 + r^2 \dot{{\varphi}}^2)+U(r)=\frac{mr^2}{2}+ \frac{M^2}{2mr^2}+U(r)
+    \label{运动积分的能量}
+\end{equation}
+我们可以得到时间
+\begin{equation}
+    t= \int \frac{\dd r}{\sqrt{ \frac{2}{m}[E-U] - \frac{M^2}{mr^2}}} +\const
+    \label{周期的运动积分}
+\end{equation}
+
+和轨迹
+\begin{equation}
+    \varphi = \int \frac{(\flatfrac{M}{r})\dd r}{\sqrt{ {2m}[E-U] - \flatfrac{M^2}{r^2}}} +\const
+    \label{轨道的运动积分}
+\end{equation}
+
+由\ref{运动积分的能量}表明，径向运动可以看作在某一场中的一维运动，其等效势能为
+$$ U_{eq} = U(r)+ \frac{M^2}{2mr^2} $$
+即
+$$\mbox{等效势能}=\mbox{原势能}+\mbox{离心势能}$$
+
+\subsection{开普勒问题}
+对引力场:
+$$U=- \frac{\alpha}{r} ,\quad \alpha > 0$$
+等效势能为
+$$U_{eff} = -\frac{\alpha}{r} + \frac{M^2}{2mr^2}$$
+显然$E>0$时质点的运动为无限，$E<0$时，运动有限\par
+将势能代入\ref{轨道的运动积分}
+$$
+\varphi=\displaystyle{\int}\frac{M/r^2 \mathrm{d}r}{\sqrt{2m(E-U)-M^2/r^2}}=\displaystyle{\int}\frac{M/r^2 \mathrm{d}r}{\sqrt{2m(E+\alpha/r)-M^2/r^2}}
+$$
+make $u=M/r$ and
+$$\mathrm{d}u=-\frac{M}{r^2}\mathrm{d}r$$ 
+so
+\begin{equation}
+    \begin{array}{rl}
+        \varphi&=-\displaystyle{\int} \frac{\mathrm{d}u}{\sqrt{2mE+2m\alpha u/M-u^2}}\\
+        &=-\displaystyle{\int} \frac{\mathrm{d}u}{\sqrt{(2mE+m^2\alpha^2/M^2)-(u-m\alpha/M)^2}}\\
+        &=\arccos \left(\frac{M/r-m\alpha/M}{\sqrt{2mE+m^2\alpha^2/M^2}}\right)+\rm{const}\\
+        &=\arccos \frac{\frac{M^2}{m\alpha r}-1}{\sqrt{1+2EM^2/m^2\alpha^2}}+\rm{const}\\
+    \end{array}
+\end{equation}
+def
+$$p=\frac{M^2}{m\alpha}\,;e=\sqrt{1+\frac{2EM^2}{m\alpha^2}}$$
+choose suitable $\varphi$ let const=0
+$$\frac{p}{r}=1+e\cos\varphi$$
+
+\subsection{卢瑟福公式推导}
+we know:
+\begin{equation*}
+    \varphi=\int^{\infty}_{r_{min}} \frac{\rho/r^2 \mathrm{d}r}{\sqrt{1-\rho^2/r^2-2U/mv^2}}
+\end{equation*}
+set $U=\alpha/r$ then
+\begin{equation}
+        \varphi=\int^{\infty}_{r_{min}} \frac{\rho/r^2 \mathrm{d}r}{\sqrt{1-\rho^2/r^2-2\alpha/mrv^2}}
+\end{equation}
+make $u=1/r$ and
+$$\mathrm{d}u=-\frac{1}{r^2}\mathrm{d}r$$
+so
+\begin{equation}
+    \begin{array}{ll}
+    \varphi&=\displaystyle{-\int} \frac{\rho \mathrm{d}u}{\sqrt{1-\rho^2 u^2-2\alpha u^2/mr}}\\
+    &=-\displaystyle{\int} \frac{\rho \mathrm{d}u}{\sqrt{\left(1+\alpha^2/m^2\rho v^4\right)^2-\left(\rho u+2\alpha/mv^2u\right)^2}}\\
+    \end{array}
+\end{equation}
+make $$z =\frac{\rho u}{\sqrt{1+\left(\alpha/m\rho v^2\right)^2}}+\frac{\alpha/m\rho v^2}{\sqrt{1+\left(\alpha/m\rho v^2\right)^2}}$$
+so
+$$\varphi=-\displaystyle{\int} \frac{\mathrm{d}z}{\sqrt{1-z^2}}$$
+so
+\begin{equation}
+    \begin{array}{ll}
+        \varphi_0 &=\arccos \left(\frac{\rho/r}{\sqrt{1+\left(\alpha/m\rho v^2\right)^2}}+\frac{\alpha/m\rho v^2}{\sqrt{1+\left(\alpha/m\rho v^2\right)^2}}\right)\bigg|^{\infty}_{r_{min}}\\
+                &=\arccos \left(\frac{\alpha/m\rho v^2}{\sqrt{1+\left(\alpha/m\rho v^2\right)^2}}\right)\\
+    \end{array}
+\end{equation}
+\newpage
+
+\chapter{统计力学}
+\section{基本概念}
+相空间：由$x\equiv (q,p)$张成的空间称为相空间，记为$\Gamma$
+\section{哈密顿正则方程}
+我们使用Legendre变换，定义：
+$$ H(q,p,t) \equiv \sum_{i=1}^{n} \dot{q}_i p_i - L(q,\dot{q},t)$$
+对变量求偏导数
+$$\begin{cases}
+    &\dot{q}_i =\displaystyle{\pdv{H}{p_i}}\\
+    &\quad \\
+    &\dot{p}_i =\displaystyle{-\pdv{H}{q_i}}
+\end{cases}$$
+时间反演情况下，Hamilton正则方程不变
+
+\subsection{经典刘维尔算符}
+定义：
+$$L(\cdot) \equiv i\{H,(\cdot)\}$$
+$$L(\cdot ) \equiv i \sum_{i=1}^{3N} \qty[\pdv{H}{q_i}\pdv{\cdot}{p_i}-
+    \pdv{\cdot}{q_i}\pdv{H}{p_i}]$$
+可改写为：
+$$\pdv{f}{t}=-iL f$$
+\subsection{经典刘维尔算符的形式解}
+式 $-iL$作用$n$次于$f$后在$t=0$处取值得到$\displaystyle{\pdv[n]{f}{t} \bigg|_{t=0} = (-iL)^n f |_{t=0}}$
+将$n=0 \rightarrow \infty$然后得到
+$$ e^{-iLt} f(q,p,0) 
+    =\sum_{n=0}^{\infty} \frac{t^n}{n!}(-iL)^n f \bigg|_{t=0} 
+    = \sum_{n=0}^{\infty} \frac{t^n}{n!} \qty(\pdv[n]{f}{t})_{t=0} 
+    =f(q,p,t)$$
+于是
+$$e^{-iLt} f(q,p,0) =f(q,p,t)$$
+\subsection{力学量的时间演化}
+任意力学量$A\equiv A(q(t),p(t),t)$的时间演化可以写为
+$$\dv{A}{t}
+=\pdv{A}{t} + \sum_{i=1}^{3N} \qty(\pdv{A}{q_i}\dot{q_i}+ \pdv{A}{p_i}\dot{p_i})
+= \pdv{A}{t} + \sum_{i=1}^{3N} \qty(\pdv{A}{q_i}\pdv{H}{p_i}- \pdv{A}{p_i}\pdv{H}{q_i})$$
+即
+$$\dv{A}{t} =\pdv{A}{t} + \{A,H\}$$
+\newpage
+
+\chapter{场论}
+\section{相对论时空观}
+\subsection{间隔}
+一个事件由其发生的坐标以及发生的时间来描述，对三维空间中发生的事件，显然有四个分量$(x,y,z,t)$来描述，
+在数学上，我们常常可以假想一个四维空间，事件在四维空间中用点表示，
+对一个粒子而言，它的所有时刻的坐标构成四维空间中的一条线，在四维空间中，两个以光速传播信号的事件应有
+$$c^2{\Delta t}^2-{\Delta x}^2-{\Delta y}^2-{\Delta z}^2=0$$
+由光速不变原理，我们在任意参考系中都能得到类似的方程\par
+若两个事件的坐标分别为$(x_1,y_1,z_1,t_1)$和$(x_2,y_2,z_2,t_2)$，则
+\begin{equation}
+    \Delta s_{12}^2=c^2\left(t_2-t_1\right)^2-\left(x_2-x_1\right)^2-\left(y_2-y_1\right)^2-\left(z_2-z_1\right)^2
+\end{equation}
+为事件的间隔，上式也可以写成
+\begin{equation}
+    \Delta s_{12}^2=c^2{\Delta t}^2-{\Delta x}^2-{\Delta y}^2-{\Delta z}^2
+\end{equation}
+若令
+$${\Delta l}^2={\Delta x}^2+{\Delta y}^2+{\Delta z}^2$$
+则
+\begin{equation}
+    \Delta s_{12}^2=c^2{\Delta t}^2-{\Delta l}^2
+\end{equation}
+对于彼此无限接近的两个事件有
+\begin{equation}
+    \dd s_{12}^2=c^2{\dd t}^2-\dd l^2
+\end{equation}
+由光速不变原理可以得到，若某一惯性系中的$\dd s=0$，则其他任意惯性系中的$\dd s'=0$，且其他任意惯性系中的$\dd s'$与其成比例，可以证明其比例为1:
+$$\dd s^2=\dd {s'}^2$$
+由此我们可以推出，事件的间隔在任意惯性系中都是相等的
+\paragraph{类时间隔}
+若两个事件在$K$系中的坐标分别为$(x_1,y_1,z_1,t_1)$和$(x_2,y_2,z_2,t_2)$，
+是否存在$K'$系，使得这两个事件同地点发生？
+
+由事件间隔的不变性得到：
+\begin{equation*}
+    c^2 t_{12}^2-l_{12}^2=c^2 {t'}_{12}^2-{l'}_{12}^2
+\end{equation*}
+令${l'}_{12}=0$，得到
+$$s_{12}^2=c^2t_{12}^2-l_{12}^2=c^2 {t'}_{12}^2$$
+显然，当$s_{12}^2>0$时，我们能找到使两事件同地发生的参考系，这样的间隔我们称为类时间隔
+，其中时间间隔就等于
+\begin{equation}
+    {t'}_{12}=\frac{1}{c} \sqrt{c^2t_{12}^2-l_{12}^2}=\frac{s_{12}}{c}
+    \label{类时间隔}
+\end{equation}
+
+\paragraph{类空间隔}
+如果我们问，是否存在$K'$系，使得两事件同时发生？
+
+那么令${t'}_{12}=0$
+$$s_{12}^2=c^2 t_{12}^2-l_{12}^2=-{l'}_{12}^2$$
+显然，$s_{12}^2<0$，$s_{12}$是虚数解，这样的间隔称为类空间隔，其中事件的距离等于
+\begin{equation}
+    {l'}_{12}=\sqrt{-(c^2t_{12}^2-l_{12}^2)}=\mathrm{i}s_{12}
+    \label{类空间隔}
+\end{equation}
+
+\paragraph{光锥}
+物质运动速度最大为光速这一限制为我们提出了一个关于过去、现在、以及未来的划分，若选取一个事件为坐标原点
+，坐标轴为时间和空间，物质的运动构成空间中的一条线，匀速直线运动的物体显然构成一条直线
+，若以运动中的某一时刻做原点，则直线过原点，并且时间轴与空间轴呈一定角度，
+由于光速的限制，这一夹角正切值有最大值，也就是光速，这样的限制构成了一个绕时间为轴的四维空间中的锥体，
+\begin{figure}[ht]
+    \centering
+    \includegraphics{pic/光锥.pdf}
+    \caption{\footnotesize 光锥}
+\end{figure}
+在aOb和cOd区域中，$c^2t^2-x^2>0$，事件与原点事件的间隔为类时间隔
+，而t的正负则区分了事件与原点事件发生时间上的顺序
+，间隔的不变性导致我们在任意参考系中观测区域aOb中的事件都是事件O的绝对未来
+，区域cOd中的事件都是事件O的绝对过去
+，这样的划分表示只有在光锥以内的事件与原点的事件构成因果关系
+，在aOc和bOd区域中的事件与原点的间隔$c^2t^2-x^2<0$是类空间隔，这样的区域中的事件在不同的参考系中与原点事件之间的未来、过去、现在的概念
+都是不定的，在某个参考系中可能发生在事件O未来，在另一个参考系中却发生在事件O的过去，因此光锥之外的事件不能与原点事件构成因果关系。
+
+\subsection{时间的变化}
+经典力学中的绝对时间在相对论中被认为是错误的，时间在不同的参考系中可能是不一样的，
+我们考察一个固定于静止系的钟，现有一个运动的钟在静止钟指示的$\dd t$内行进了$\sqrt{\dd x^2+dy^2+dz^2}$距离，
+那么运动的钟指示时间间隔又是多少？
+
+对于运动的钟所固定的参考系中，运动的钟移动距离为0，可以认为是同一地点发生的两个事件，那么由(\ref{类时间隔})得到
+\begin{equation}
+    \dd {t'}=\dd t \sqrt{1-\frac{1}{c^2} \frac{\dd l^2}{\dd t^2}}=\dd t \sqrt{1-\frac{v^2}{c^2}}
+\end{equation}
+积分后：
+\begin{equation}
+    \Delta {t'}=\Delta t \sqrt{1-\frac{v^2}{c^2}} <\Delta t
+\end{equation}
+随物体一同运动的钟所表示的时间称为固有时
+，这表示运动的钟所表示的时间间隔比静止的钟所表示的时间间隔缩短了，也就是说运动的钟走的更慢了。
+
+\subsection{洛伦兹变换}
+我们知道了运动相对静止会导致时间的变化，那么我们就要导出一个惯性系到另一惯性系的坐标变换。
+在经典的力学中，由于绝对时间的假定，对于两个相对速度为$\vec{V}$的两个惯性系，我们可以得到伽利略变换
+$$x={x'}+V_x t,\quad y={y'}+V_y t,\quad z={z'}+V_z t$$
+在相对论中，我们考察的是事件在四维空间中的转动，从事件的间隔保持不变出发，考察一个在$x$轴方向上保持相对速度$V$的两个惯性系的简单情形。
+$$c^2 t^2-x^2=c^2 {t'}^2-{x'}^2$$
+\begin{figure}[ht]
+    \centering
+    \includegraphics{pic/坐标系.pdf}
+    \caption{\footnotesize 坐标系的运动}
+\end{figure}
+方程具有双曲函数的性质，我们可以写出这样的形式
+$$x=x'\cosh \phi +c{t'}\sinh \phi ,\quad ct=x'\sinh \phi +c{t'}\cosh \phi$$
+考察运动系原点在静系中的运动
+$$x=c{t'}\sinh \phi ,\quad ct=c{t'}\cosh \phi$$
+$x/t$就是两坐标系间的相对速度$V$
+$$\frac{x}{ct}=\tanh \phi=\frac{V}{c}$$
+由双曲函数的变换得到
+$$\sinh \phi =\frac{V/c}{\sqrt{1-\dfrac{V^2}{c^2}}},\quad \sinh \phi =\frac{1}{\sqrt{1-\dfrac{V^2}{c^2}}}$$
+显然，当$V>c$时将会得到虚数的坐标，这是不可能的，因此$V$不能超过$c$ \par
+
+记$\gamma =\dfrac{1}{\sqrt{1-{V^2}/{c^2}}}$代入得
+\begin{equation}
+    x=\gamma (x'+V{t'}),\quad y=y',\quad z=z',\quad t=\gamma ({t'}+\dfrac{V}{c^2}{x'})
+    \label{洛伦兹变换}
+\end{equation}
+记$\beta =V/c$写成矩阵的形式为
+\begin{equation}
+    \left(
+        \begin{array}{c}
+            x\\y\\z\\ct
+        \end{array}
+    \right)
+    =
+    \left(
+        \begin{array}{cccc}
+            \gamma &0&0& \beta \gamma\\
+            0&1&0&0\\
+            0&0&1&0\\
+            \beta \gamma&0&0&\gamma
+        \end{array}
+    \right)
+    \left(
+        \begin{array}{c}
+            x'\\y'\\z'\\ct'
+        \end{array}
+    \right)
+\end{equation}
+在一个参考系中测量距离相当于计算同一时刻下的坐标差
+$$\Delta x=x_2-x_1=\gamma ({x'}_2+Vt')-\gamma({x'}_1+Vt')=\gamma \Delta {x'}$$
+运动的坐标系测得的距离
+\begin{equation}
+    \Delta {x'}=\gamma ^{-1} \Delta x
+\end{equation}
+对(\ref{洛伦兹变换})取微分形式
+\begin{equation*}
+    \dd x=\gamma (\dd x'+V \dd {t'}),\quad \dd y=\dd y',\quad \dd z=\dd z',\quad \dd t=\gamma (\dd {t'}+\dfrac{V}{c^2} \dd {x'})
+    \label{洛伦兹变换微分}
+\end{equation*}
+用$\dd t$除以前三项得到速度的变换
+\begin{equation}
+    v_x=\frac{{v'}_x+V}{1+{v'}_x\dfrac{V}{c^2}},\quad v_y=\frac{\gamma ^{-1} {v'}_y}{1+{v'}_x\dfrac{V}{c^2}},\quad v_z=\frac{\gamma ^{-1} {v'}_z}{1+{v'}_x\dfrac{V}{c^2}}
+    \label{洛伦兹变换速度}
+\end{equation}
+通常情况下$V\ll c$，我们把$c$视为$c\rightarrow \infty $，那么$V/c\rightarrow 0,\quad \gamma =1/{\sqrt{1-{V^2}/{c^2}}}\rightarrow 1$
+,坐标上的形式(\ref{洛伦兹变换})变为
+\begin{equation*}
+    x={x'}+V t,\quad y={y'},\quad z={z'}
+\end{equation*}
+速度形式(\ref{洛伦兹变换速度})变为：
+\begin{equation*}
+    v_x={v'}_x+V,\quad v_y={v'}_y,\quad v_z={v'}_z
+\end{equation*}
+这与伽利略变换的形式一致。相对论在低速情况下能过渡到经典力学！
+
+
+我们由间隔不变原理得到了两个重要的方程
+\begin{equation*}
+    \left\{
+        \begin{array}{ll}
+            \Delta {x'}=\gamma ^{-1} \Delta x\\
+            \Delta {t'}=\gamma ^{-1} \Delta t
+        \end{array}
+    \right.
+\end{equation*}
+其中$\gamma ^{-1}<1$。方程显示，运动的参考系相比静止参考系的固有时更慢
+，测量的长度更短，即钟慢效应和尺缩效应。钟慢效应已经在高精度原子钟中和粒子寿命中发现，尺缩效应则在$\mu$子的观测中发现。                                                                                  
+
+
+\section{张量}
+\subsection{四维矢量}
+在闵氏几何中，事件的思维坐标为时空坐标$(x^0,x^1,x^2,x^3)$，该矢量的长度平方为：
+$$(x^0)^2-(x^1)^2-(x^2)^2-(x^3)^2$$
+为方便起见，我们定义了四维矢量的两种分量类型：并以上下标的形式区分它们：
+$$A_0=A^0,\quad A_1=-A^1,\quad A_2=-A^2,\quad A_3=-A^3$$
+其中$A^i$为逆变分量，$A_i$为协变分量，则四维矢量的平方记为:
+$$ \sum_{i=0}^{3} A^iA_i=A^0A_0+A^1A_1+A^2A_2+A^3A_3$$
+我们通常省略求和号，直接将求和简单记为$A^iA_i$，籍由平方的定义，我门可以构造两个不同四维矢量的标积：
+$$ A^iB_i=A^0B_0+A^1B_1+A^2B_2+A^3B_3$$
+这样的标积既可以写成$A^iB_i$也可以写成$A_iB^i$，只要满足协变分量和逆变分量相乘即可。\par
+$A^iB_i$是一个四维标量，在四维坐标系中的任何转动都是不变的，为区别空间上的变换和列举四维矢量的分量，我们将记为$A^i=(A^0,\vecb{A})$
+$A^0$是时间分量，$\vecb{A}$是空间分量\par
+二阶四维张量是16个量$A^{ik}$的集合，可写成三种形式：协变$A_{ik}$，逆变$A^{ik}$，混合$A^i_{\,\,\,k}$
+
+
+\end{document}
